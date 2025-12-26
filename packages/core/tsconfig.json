@@ -3,7 +3,7 @@
     "rootDir": "./src",
     "outDir": "./dist",
 
-    "module": "nodenext",
+    "module": "esnext",
     "target": "esnext",
     "types": [],
 
