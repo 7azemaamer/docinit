@@ -1,4 +1,5 @@
 import Image from "next/image";
+import type { Blueprint } from '@docinit/core'
 
 export default function Home() {
   return (

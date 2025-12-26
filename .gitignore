@@ -7,3 +7,6 @@ turbo
 .DS_Store
 .vscode
 .idea
+
+# Personal notes (not tracked)
+.notes/
