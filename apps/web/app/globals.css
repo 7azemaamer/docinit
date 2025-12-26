@@ -8,28 +8,28 @@
   --color-accent: var(--accent);
   --color-muted: var(--muted);
   --color-border: var(--border);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-family-sans: var(--font-sans);
+  --font-family-mono: var(--font-mono);
 }
 
 :root {
-  --color-background: #ffffff;
-  --color-foreground: #171717;
-  --color-primary: #18181b;
-  --color-secondary: #52525b;
-  --color-accent: #71717a;
-  --color-muted: #f4f4f5;
-  --color-border: #e4e4e7;
+  --bg: #ffffff;
+  --fg: #171717;
+  --primary: #18181b;
+  --secondary: #71717a;
+  --accent: #a1a1aa;
+  --muted: #f4f4f5;
+  --border: #e4e4e7;
 }
 
 .dark {
-  --color-background: #09090b;
-  --color-foreground: #fafafa;
-  --color-primary: #fafafa;
-  --color-secondary: #a1a1aa;
-  --color-accent: #71717a;
-  --color-muted: #18181b;
-  --color-border: #27272a;
+  --bg: #09090b;
+  --fg: #fafafa;
+  --primary: #fafafa;
+  --secondary: #a1a1aa;
+  --accent: #71717a;
+  --muted: #18181b;
+  --border: #27272a;
 }
 
 body {
@@ -40,4 +40,28 @@ body {
 
 button {
   cursor: pointer !important;
+}
+
+/* Custom Scrollbar - Minimal */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
+}
+
+*::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 3px;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: var(--accent);
 }
