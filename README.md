@@ -1,7 +1,8 @@
 # Docinit
 
-`Docinit` is an open-source tool for building developer documentation from a
-structured blueprint.
+> **Other tools render your docs. Docinit designs them.**
+
+`Docinit` is a blueprint-first documentation framework for developers.
 
 It lets you design your docs structure, write guided content, and render a
 real documentation site — all from a single source of truth.
@@ -10,28 +11,41 @@ real documentation site — all from a single source of truth.
 
 ## 1. What is Docinit?
 
-`Docinit` is an open-source documentation builder and renderer for developers.
+`Docinit` is an open-source documentation framework that starts with structure, not content.
 
 It helps teams **design, write, and publish documentation** starting from a
 clear structural blueprint.
 
-Unlike traditional documentation tools that focus on:
+### How Docinit is different
+
+| Problem              | Traditional tools      | Docinit                    |
+| -------------------- | ---------------------- | -------------------------- |
+| What to document?    | You figure it out      | Blueprint generation       |
+| Page purpose         | Implicit               | Explicit (per-page intent) |
+| Missing content      | Unknown until too late | Highlighted automatically  |
+| Structure validation | None                   | Built-in                   |
+| Writing experience   | Free-form              | Guided by purpose          |
+
+Traditional documentation tools focus on:
 
 - rendering markdown
 - theming
-- hosting only
+- hosting
 - or AI-generated text in isolation
+
+They assume **you already know what to write**.
 
 `Docinit` treats documentation as a **system with intent and structure**.
 
-It answers:
+It answers the questions others skip:
 
 - What documentation should exist?
 - Why should each page exist?
 - How should content be introduced and ordered?
 - What mental model does the reader need?
+- What's missing?
 
-The blueprint is the foundation not the output.
+The blueprint is the foundation — not the output.
 
 ---
 
