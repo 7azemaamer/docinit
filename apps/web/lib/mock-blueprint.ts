@@ -1,6 +1,9 @@
 import { Blueprint } from "@docinit/core";
 
+// Single blueprint with full details
 export const mockBlueprint: Blueprint = {
+  id: "docinit-docs",
+  slug: "docinit-docs",
   name: "Docinit Documentation",
   version: "1.0.0",
   sections: [
@@ -92,3 +95,64 @@ export const mockBlueprint: Blueprint = {
     },
   ],
 };
+
+// List of all blueprints (for /builder page)
+export const mockBlueprints: Blueprint[] = [
+  mockBlueprint,
+  {
+    id: "api-reference",
+    slug: "api-reference",
+    name: "API Reference",
+    version: "2.1.0",
+    sections: [
+      {
+        id: "endpoints",
+        title: "Endpoints",
+        slug: "endpoints",
+        pages: [
+          {
+            id: "users",
+            title: "Users API",
+            slug: "users",
+            purpose: "User management endpoints",
+            status: "completed",
+          },
+          {
+            id: "auth",
+            title: "Authentication",
+            slug: "auth",
+            purpose: "Auth flow and tokens",
+            status: "draft",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: "design-system",
+    slug: "design-system",
+    name: "Design System",
+    version: "1.0.0",
+    sections: [
+      {
+        id: "components",
+        title: "Components",
+        slug: "components",
+        pages: [
+          {
+            id: "buttons",
+            title: "Buttons",
+            slug: "buttons",
+            purpose: "Button variants and usage",
+            status: "empty",
+          },
+        ],
+      },
+    ],
+  },
+];
+
+// Helper to find a blueprint by slug
+export function getBlueprintBySlug(slug: string): Blueprint | undefined {
+  return mockBlueprints.find((bp) => bp.slug === slug);
+}

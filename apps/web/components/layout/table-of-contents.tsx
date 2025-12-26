@@ -7,12 +7,15 @@ type Heading = {
 export default function TableOfContents({ content }: { content?: string }) {
   if (!content) {
     return (
-      <div className="p-4">
-        <h2 className="font-semibold text-foreground mb-4">On this page</h2>
-        <p className="text-sm text-secondary">No content yet</p>
+      <div className="p-6">
+        <p className="text-xs font-medium text-secondary uppercase tracking-wide mb-4">
+          On this page
+        </p>
+        <p className="text-sm text-accent">No content yet</p>
       </div>
     );
   }
+
   const headings: Heading[] = [];
   const lines = content.split("\n");
 
@@ -28,21 +31,26 @@ export default function TableOfContents({ content }: { content?: string }) {
 
   if (headings.length === 0) {
     return (
-      <div className="p-4">
-        <h2 className="font-semibold text-foreground mb-4">On this page</h2>
-        <p className="text-sm text-secondary">No headings found</p>
+      <div className="p-6">
+        <p className="text-xs font-medium text-secondary uppercase tracking-wide mb-4">
+          On this page
+        </p>
+        <p className="text-sm text-accent">No headings found</p>
       </div>
     );
   }
+
   return (
-    <div className="p-4">
-      <h2 className="font-semibold text-foreground mb-4">On this page</h2>
-      <nav className="space-y-2">
+    <div className="p-6">
+      <p className="text-xs font-medium text-secondary uppercase tracking-wide mb-4">
+        On this page
+      </p>
+      <nav className="space-y-1">
         {headings.map((heading) => (
           <a
             key={heading.id}
             href={`#${heading.id}`}
-            className={`block text-sm text-secondary hover:text-primary transition-colors ${
+            className={`block py-1 text-sm text-accent hover:text-foreground transition-colors ${
               heading.level === 3 ? "pl-3" : ""
             }`}
           >

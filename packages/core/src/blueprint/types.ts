@@ -15,6 +15,8 @@ export type Section = {
 };
 
 export type Blueprint = {
+  id: string;
+  slug: string;
   name: string;
   version: string;
   sections: Section[];
