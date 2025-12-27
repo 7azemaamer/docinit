@@ -3,6 +3,15 @@
 import { useState, useRef, useEffect } from "react";
 import { PencilIcon } from "@heroicons/react/24/outline";
 
+/**
+ * EditableField - Reusable editable field component
+ *
+ * Features:
+ * - Click to edit
+ * - Supports single-line and multi-line
+ * - Escape key to close
+ */
+
 type EditableFieldProps = {
   value: string;
   onChange: (value: string) => void;

@@ -67,10 +67,10 @@ export default function Home() {
         <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
           <Link
             className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-opacity hover:opacity-80 md:w-[168px]"
-            href="/builder"
+            href="/new"
           >
             <PencilSquareIcon className="h-4 w-4" />
-            Open Builder
+            Start Now
           </Link>
           <a
             className="flex h-12 w-full items-center justify-center rounded-full border border-border px-5 text-foreground transition-colors hover:bg-muted md:w-[168px]"

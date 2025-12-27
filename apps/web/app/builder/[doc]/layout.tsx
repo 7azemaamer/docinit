@@ -1,19 +1,24 @@
-import { getBlueprintBySlug } from "@/lib/mock-blueprint";
-import { notFound } from "next/navigation";
+"use client";
+
+import { useParams } from "next/navigation";
+import { useBlueprint } from "@/hooks/use-blueprint";
 import { DocLayoutClient } from "./doc-layout-client";
 
-export default async function DocLayout({
-  children,
-  params,
-}: {
-  children: React.ReactNode;
-  params: Promise<{ doc: string }>;
-}) {
-  const { doc } = await params;
-  const blueprint = getBlueprintBySlug(doc);
+export default function DocLayout({ children }: { children: React.ReactNode }) {
+  const params = useParams();
+  const doc = params.doc as string;
+  const { blueprint, loading } = useBlueprint(doc);
+
+  if (loading) {
+    return (
+      <div className="flex flex-1 items-center justify-center">
+        <div className="text-secondary">Loading...</div>
+      </div>
+    );
+  }
 
   if (!blueprint) {
-    notFound();
+    return <>{children}</>;
   }
 
   return (

@@ -1,6 +1,6 @@
 "use client";
 
-import { Blueprint, Section, Page } from "@docinit/core";
+import { Blueprint, Section, Page, slugify } from "@docinit/core";
 import { createContext, useContext, useState, ReactNode } from "react";
 
 /**
@@ -21,20 +21,21 @@ type BlueprintContextType = {
   addSection: (title: string) => void;
   // Page actions
   addPage: (sectionId: string, title: string, purpose: string) => void;
+  updatePageStatus: (
+    sectionId: string,
+    pageId: string,
+    status: Page["status"]
+  ) => void;
+  updatePageContent: (
+    sectionId: string,
+    pageId: string,
+    content: string
+  ) => void;
 };
 
 const BlueprintContext = createContext<BlueprintContextType | null>(null);
 
-// Helper to generate slug from title
-function slugify(text: string): string {
-  return text
-    .toLowerCase()
-    .trim()
-    .replace(/[^\w\s-]/g, "")
-    .replace(/\s+/g, "-");
-}
 
-// Helper to generate unique ID
 function generateId(): string {
   return Math.random().toString(36).substring(2, 9);
 }
@@ -48,7 +49,6 @@ export function BlueprintProvider({
 }) {
   const [blueprint, setBlueprint] = useState<Blueprint>(initialBlueprint);
 
-  // Add a new section
   const addSection = (title: string) => {
     const newSection: Section = {
       id: generateId(),
@@ -63,7 +63,6 @@ export function BlueprintProvider({
     }));
   };
 
-  // Add a new page to a section
   const addPage = (sectionId: string, title: string, purpose: string) => {
     const newPage: Page = {
       id: generateId(),
@@ -83,8 +82,66 @@ export function BlueprintProvider({
     }));
   };
 
+  const updatePageStatus = (
+    sectionId: string,
+    pageId: string,
+    status: Page["status"]
+  ) => {
+    setBlueprint((prev) => ({
+      ...prev,
+      sections: prev.sections.map((section) =>
+        section.id === sectionId
+          ? {
+              ...section,
+              pages: section.pages.map((page) =>
+                page.id === pageId ? { ...page, status } : page
+              ),
+            }
+          : section
+      ),
+    }));
+  };
+
+  const updatePageContent = (
+    sectionId: string,
+    pageId: string,
+    content: string
+  ) => {
+    setBlueprint((prev) => ({
+      ...prev,
+      sections: prev.sections.map((section) =>
+        section.id === sectionId
+          ? {
+              ...section,
+              pages: section.pages.map((page) =>
+                page.id === pageId
+                  ? {
+                      ...page,
+                      content,
+                      status: content.trim()
+                        ? page.status === "empty"
+                          ? "draft"
+                          : page.status
+                        : "empty",
+                    }
+                  : page
+              ),
+            }
+          : section
+      ),
+    }));
+  };
+
   return (
-    <BlueprintContext.Provider value={{ blueprint, addSection, addPage }}>
+    <BlueprintContext.Provider
+      value={{
+        blueprint,
+        addSection,
+        addPage,
+        updatePageStatus,
+        updatePageContent,
+      }}
+    >
       {children}
     </BlueprintContext.Provider>
   );
