@@ -18,10 +18,13 @@ export default function BuilderPage() {
               {mockBlueprints.length} documentation projects
             </p>
           </div>
-          <button className="flex items-center gap-2 px-4 py-2 bg-foreground text-background rounded-lg hover:opacity-90 transition-opacity">
+          <Link
+            href="/new"
+            className="flex items-center gap-2 px-4 py-2 font-bold bg-foreground text-background rounded-lg hover:opacity-90 transition-opacity"
+          >
             <PlusIcon className="h-4 w-4" />
             New Doc
-          </button>
+          </Link>
         </div>
 
         {/* Docs Grid */}

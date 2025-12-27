@@ -65,3 +65,14 @@ button {
 *::-webkit-scrollbar-thumb:hover {
   background: var(--accent);
 }
+
+/* Text Selection */
+::selection {
+  background: var(--fg);
+  color: var(--bg);
+}
+
+::-moz-selection {
+  background: var(--fg);
+  color: var(--bg);
+}

@@ -1,18 +1,33 @@
-import { getBlueprintBySlug } from "@/lib/mock-blueprint";
+"use client";
+
 import Link from "next/link";
 import { ArrowRightIcon } from "@heroicons/react/24/outline";
-import { notFound } from "next/navigation";
+import { useParams } from "next/navigation";
+import { useBlueprint } from "@/hooks/use-blueprint";
 
-export default async function DocOverviewPage({
-  params,
-}: {
-  params: Promise<{ doc: string }>;
-}) {
-  const { doc } = await params;
-  const blueprint = getBlueprintBySlug(doc);
+export default function DocOverviewPage() {
+  const params = useParams();
+  const doc = params.doc as string;
+  const { blueprint, loading } = useBlueprint(doc);
+
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center min-h-[50vh]">
+        <div className="text-secondary">Loading...</div>
+      </div>
+    );
+  }
 
   if (!blueprint) {
-    notFound();
+    return (
+      <div className="flex flex-col items-center justify-center min-h-[50vh] space-y-4">
+        <h1 className="text-2xl font-bold text-foreground">Not Found</h1>
+        <p className="text-secondary">Blueprint &quot;{doc}&quot; not found</p>
+        <Link href="/builder" className="text-foreground hover:underline">
+          ← Back to Builder
+        </Link>
+      </div>
+    );
   }
 
   return (
